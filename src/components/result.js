@@ -19,17 +19,12 @@ const useStyles = makeStyles(() => ({
     flexWrap: "wrap",
     marginTop: 20,
   },
-  container: {
-    height: 200,
+  card: {
     width: 250,
     marginRight: 15,
-    marginBottom: 50,
-  },
-  card: {
-    height: "100%",
   },
   media: {
-    height: "100%",
+    height: 200,
     backgroundSize: "contain",
   },
   title: {
@@ -54,20 +49,20 @@ function Result({ selectBranch }) {
 
   const card = (name, image, subcategories) => (
     <div
-      className={classes.container}
+      className={classes.card}
       onClick={() => subcategories && setSubCategory({ name, subcategories })}
     >
-      <Card className={classes.card} key={name}>
+      <Card key={name}>
         <CardMedia
           className={classes.media}
           image={`/images/${image}`}
           title={name}
         />
+        <Button className={classes.button} variant="contained" color="primary">
+          {name}
+          {subCategory ? null : <ArrowRightIcon />}
+        </Button>
       </Card>
-      <Button className={classes.button} variant="contained" color="primary">
-        {name}
-        {subCategory ? null : <ArrowRightIcon />}
-      </Button>
     </div>
   );
 
